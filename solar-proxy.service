@@ -1,0 +1,19 @@
+[Unit]
+Description=Solar Power Monitor Reverse Proxy (Digest Auth Bypass)
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/opt/solar-proxy/solar-proxy
+WorkingDirectory=/opt/solar-proxy
+Restart=always
+RestartSec=5
+
+# === 環境変数ファイルを外部から読み込む ===
+EnvironmentFile=/opt/solar-proxy/.env
+# =========================================
+
+User=root
+
+[Install]
+WantedBy=multi-user.target
