@@ -6,6 +6,36 @@
 
 # デプロイ方法
 
+## 1. LXCコンテナを用意
+
+Ubunut 26で確認ずみ
+
+下記のパッケージを導入しておく
+```bash
+apt install -y golang git
+```
+
+
+## 2. ソースのダウンロード
+
+```bash
+cd /opt
+git clone https://github.com/gorakuru/solar-proxy.git
+cd solar-proxy
+```
+
+## 3. ビルド
+
+```bash
+go mod init solar-proxy
+go mod tidy
+go build -o solar-proxy main.go
+```
+
+## 4. サービスファイルの用意
+
+
+
 承知いたしました。LXCコンテナ内で直接Go環境を構築し、コードの作成からビルド、サービス化までをすべてコンテナ内で完結させる手順に変更します。
 
 ホストPCでのクロスコンパイルやファイル転送の手間が省け、コンテナ単体で自己完結できるため管理がしやすくなります。ProxmoxのLXCコンソール（またはSSH）に `root` ユーザーでログインした状態から進めてください。
